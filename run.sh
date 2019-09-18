@@ -94,5 +94,15 @@ if [ "$1" = "run" ]; then
     exit 0
 fi
 
+if [ "$1" = "exportall" ]; then
+    chown postgres:postgres /var/lib/postgresql -R
+    CreatePostgressqlConfig
+    service postgresql start
+    sudo -u renderer python /gen-tiles.py
+    service postgresql stop
+
+    exit 0
+fi
+
 echo "invalid command"
 exit 1

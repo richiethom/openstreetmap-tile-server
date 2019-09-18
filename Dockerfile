@@ -164,6 +164,7 @@ RUN cd ~/src \
 USER root
 COPY run.sh /
 COPY indexes.sql /
+COPY gen-tiles.py / 
 ENTRYPOINT ["/run.sh"]
 CMD []
 
