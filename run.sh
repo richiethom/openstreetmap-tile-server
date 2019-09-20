@@ -87,7 +87,7 @@ if [ "$1" = "exportall" ]; then
     chown postgres:postgres /var/lib/postgresql -R
     CreatePostgressqlConfig
     service postgresql start
-    sudo -u renderer python /gen-tiles.py $2
+    sudo -u renderer python /gen-tiles.py $2 $3 $4 $5 $6
     service postgresql stop
 
     exit 0

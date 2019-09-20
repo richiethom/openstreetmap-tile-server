@@ -262,6 +262,6 @@ if __name__ == "__main__":
 #    bbox = (1.0,10.0, 20.6,50.0)
 #    render_tiles(bbox, mapfile, tile_dir, 1, 11 , "Europe+")
 
-    bbox = (1.51, 42.49, 1.56, 42.52)
+    bbox = (float(sys.argv[2]), float(sys.argv[3]), float(sys.argv[4]), float(sys.argv[5]))
     render_tiles(bbox, '/home/renderer/src/openstreetmap-carto/mapnik.xml', '/tiles/', 1, 16, "Andorra")
     os._exit(0)
