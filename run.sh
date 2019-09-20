@@ -9,17 +9,6 @@ function CreatePostgressqlConfig()
   cat /etc/postgresql/10/main/postgresql.custom.conf
 }
 
-if [ "$#" -ne 1 ]; then
-    echo "usage: <import|run>"
-    echo "commands:"
-    echo "    import: Set up the database and import /data.osm.pbf"
-    echo "    run: Runs Apache and renderd to serve tiles at /tile/{z}/{x}/{y}.png"
-    echo "environment variables:"
-    echo "    THREADS: defines number of threads used for importing / tile rendering"
-    echo "    UPDATES: consecutive updates (enabled/disabled)"
-    exit 1
-fi
-
 if [ "$1" = "import" ]; then
     # Initialize PostgreSQL
     CreatePostgressqlConfig
@@ -98,7 +87,7 @@ if [ "$1" = "exportall" ]; then
     chown postgres:postgres /var/lib/postgresql -R
     CreatePostgressqlConfig
     service postgresql start
-    sudo -u renderer python /gen-tiles.py
+    sudo -u renderer python /gen-tiles.py $2
     service postgresql stop
 
     exit 0
